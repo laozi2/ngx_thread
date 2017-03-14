@@ -81,7 +81,7 @@ ngx_thread_mutex_create(ngx_thread_mutex_t *mtx)
     if (err != 0) {
         //ngx_log_error(NGX_LOG_EMERG, log, err,
         //              "pthread_mutexattr_init() failed");
-		LOG_ERROR("pthread_mutexattr_init() failed");
+        LOG_ERROR("pthread_mutexattr_init() failed");
         return NGX_ERROR;
     }
 
@@ -90,7 +90,7 @@ ngx_thread_mutex_create(ngx_thread_mutex_t *mtx)
         //ngx_log_error(NGX_LOG_EMERG, log, err,
         //              "pthread_mutexattr_settype"
         //              "(PTHREAD_MUTEX_ERRORCHECK) failed");
-		LOG_ERROR("pthread_mutexattr_settype() failed");
+        LOG_ERROR("pthread_mutexattr_settype() failed");
         return NGX_ERROR;
     }
 
@@ -98,7 +98,7 @@ ngx_thread_mutex_create(ngx_thread_mutex_t *mtx)
     if (err != 0) {
         //ngx_log_error(NGX_LOG_EMERG, log, err,
         //              "pthread_mutex_init() failed");
-		LOG_ERROR("pthread_mutex_init() failed");
+        LOG_ERROR("pthread_mutex_init() failed");
         return NGX_ERROR;
     }
 
@@ -106,12 +106,12 @@ ngx_thread_mutex_create(ngx_thread_mutex_t *mtx)
     if (err != 0) {
         //ngx_log_error(NGX_LOG_ALERT, log, err,
         //              "pthread_mutexattr_destroy() failed");
-		LOG_ERROR("pthread_mutexattr_destroy() failed");
+        LOG_ERROR("pthread_mutexattr_destroy() failed");
     }
 
     //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
     //               "pthread_mutex_init(%p)", mtx);
-	LOG_DEBUG("pthread_mutex_init(%p)", mtx);
+    LOG_DEBUG("pthread_mutex_init(%p)", mtx);
     return NGX_OK;
 }
 
@@ -125,13 +125,13 @@ ngx_thread_mutex_destroy(ngx_thread_mutex_t *mtx)
     if (err != 0) {
         //ngx_log_error(NGX_LOG_ALERT, log, err,
         //              "pthread_mutex_destroy() failed");
-		LOG_ERROR("pthread_mutex_destroy() failed");
+        LOG_ERROR("pthread_mutex_destroy() failed");
         return NGX_ERROR;
     }
 
     //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
     //               "pthread_mutex_destroy(%p)", mtx);
-	LOG_DEBUG("pthread_mutex_destroy(%p)", mtx);
+    LOG_DEBUG("pthread_mutex_destroy(%p)", mtx);
     return NGX_OK;
 }
 
@@ -143,15 +143,15 @@ ngx_thread_mutex_lock(ngx_thread_mutex_t *mtx)
 
     //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
     //               "pthread_mutex_lock(%p) enter", mtx);
-	LOG_DEBUG("pthread_mutex_lock(%p)", mtx);
-	
+    LOG_DEBUG("pthread_mutex_lock(%p)", mtx);
+    
     err = pthread_mutex_lock(mtx);
     if (err == 0) {
         return NGX_OK;
     }
 
     //ngx_log_error(NGX_LOG_ALERT, log, err, "pthread_mutex_lock() failed");
-	LOG_ERROR("pthread_mutex_lock() failed");
+    LOG_ERROR("pthread_mutex_lock() failed");
     return NGX_ERROR;
 }
 
@@ -170,12 +170,12 @@ ngx_thread_mutex_unlock(ngx_thread_mutex_t *mtx)
     if (err == 0) {
         //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
         //               "pthread_mutex_unlock(%p) exit", mtx);
-		LOG_DEBUG("pthread_mutex_lock(%p)", mtx);
+        LOG_DEBUG("pthread_mutex_lock(%p)", mtx);
         return NGX_OK;
     }
 
     //ngx_log_error(NGX_LOG_ALERT, log, err, "pthread_mutex_unlock() failed");
-	LOG_ERROR("pthread_mutex_unlock() failed");
+    LOG_ERROR("pthread_mutex_unlock() failed");
     return NGX_ERROR;
 }
 
@@ -192,13 +192,13 @@ ngx_thread_cond_create(ngx_thread_cond_t *cond)
     if (err == 0) {
         //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
         //               "pthread_cond_init(%p)", cond);
-		LOG_DEBUG("pthread_mutex_lock(%p)", cond);
+        LOG_DEBUG("pthread_mutex_lock(%p)", cond);
         return NGX_OK;
     }
 
     //ngx_log_error(NGX_LOG_EMERG, log, err, "pthread_cond_init() failed");
     LOG_ERROR("pthread_cond_init() failed");
-	return NGX_ERROR;
+    return NGX_ERROR;
 }
 
 
@@ -211,12 +211,12 @@ ngx_thread_cond_destroy(ngx_thread_cond_t *cond)
     if (err == 0) {
         //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
         //               "pthread_cond_destroy(%p)", cond);
-		LOG_DEBUG("pthread_cond_destroy(%p)", cond);
+        LOG_DEBUG("pthread_cond_destroy(%p)", cond);
         return NGX_OK;
     }
 
     //ngx_log_error(NGX_LOG_EMERG, log, err, "pthread_cond_destroy() failed");
-	LOG_ERROR("pthread_cond_destroy() failed");
+    LOG_ERROR("pthread_cond_destroy() failed");
     return NGX_ERROR;
 }
 
@@ -230,13 +230,13 @@ ngx_thread_cond_signal(ngx_thread_cond_t *cond)
     if (err == 0) {
         //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
         //               "pthread_cond_signal(%p)", cond);
-		LOG_DEBUG("pthread_cond_signal(%p)", cond);
+        LOG_DEBUG("pthread_cond_signal(%p)", cond);
         return NGX_OK;
     }
 
     //ngx_log_error(NGX_LOG_EMERG, log, err, "pthread_cond_signal() failed");
     LOG_ERROR("pthread_cond_signal() failed");
-	return NGX_ERROR;
+    return NGX_ERROR;
 }
 
 
@@ -247,8 +247,8 @@ ngx_thread_cond_wait(ngx_thread_cond_t *cond, ngx_thread_mutex_t *mtx)
 
     //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
     //               "pthread_cond_wait(%p) enter", cond);
-	LOG_DEBUG("pthread_cond_wait(%p) enter", cond);
-	
+    LOG_DEBUG("pthread_cond_wait(%p) enter", cond);
+    
     err = pthread_cond_wait(cond, mtx);
 
 #if 0
@@ -258,12 +258,12 @@ ngx_thread_cond_wait(ngx_thread_cond_t *cond, ngx_thread_mutex_t *mtx)
     if (err == 0) {
         //ngx_log_debug1(NGX_LOG_DEBUG_CORE, log, 0,
         //               "pthread_cond_wait(%p) exit", cond);
-		LOG_DEBUG("pthread_cond_wait(%p) exit", cond);
+        LOG_DEBUG("pthread_cond_wait(%p) exit", cond);
         return NGX_OK;
     }
 
     //ngx_log_error(NGX_LOG_ALERT, log, err, "pthread_cond_wait() failed");
-	LOG_ERROR("pthread_cond_wait() failed");
+    LOG_ERROR("pthread_cond_wait() failed");
     return NGX_ERROR;
 }
 

@@ -75,7 +75,7 @@ ngx_thread_pool_init(ngx_thread_pool_t *tp)
     if (err) {
         //ngx_log_error(NGX_LOG_ALERT, log, err,
         //              "pthread_attr_init() failed");
-		LOG_ERROR("pthread_attr_init() failed");
+        LOG_ERROR("pthread_attr_init() failed");
         return NGX_ERROR;
     }
 
@@ -84,7 +84,7 @@ ngx_thread_pool_init(ngx_thread_pool_t *tp)
     if (err) {
         //ngx_log_error(NGX_LOG_ALERT, log, err,
         //              "pthread_attr_setstacksize() failed");
-		LOG_ERROR("pthread_attr_setstacksize() failed");
+        LOG_ERROR("pthread_attr_setstacksize() failed");
         return NGX_ERROR;
     }
 #endif
@@ -94,7 +94,7 @@ ngx_thread_pool_init(ngx_thread_pool_t *tp)
         if (err) {
             //ngx_log_error(NGX_LOG_ALERT, log, err,
             //              "pthread_create() failed");
-			LOG_ERROR("pthread_create() failed");
+            LOG_ERROR("pthread_create() failed");
             return NGX_ERROR;
         }
     }
@@ -294,7 +294,7 @@ ngx_thread_pool_cycle(void *data)
         //
         //ngx_unlock(&ngx_thread_pool_done_lock);
 
-		//this is nginx call(notify) event after the task is done
+        //this is nginx call(notify) event after the task is done
         //(void) ngx_notify(ngx_thread_pool_handler);
     }
 }
@@ -337,21 +337,21 @@ ngx_thread_pool_cycle(void *data)
 ngx_thread_pool_t* 
 ngx_thread_pool_config(ngx_uint_t threads)
 {
-	ngx_int_t max_queue = 65536;
-	if (threads < 1) {
-		threads = 1;
-	}
-	
-	ngx_thread_pool_t* tp = &g_tp;
-	
-	if (tp->threads) {
-		return tp;
-	}
-	
-	tp->threads = threads;
-	tp->max_queue = max_queue;
-	
-	return tp;
+    ngx_int_t max_queue = 65536;
+    if (threads < 1) {
+        threads = 1;
+    }
+    
+    ngx_thread_pool_t* tp = &g_tp;
+    
+    if (tp->threads) {
+        return tp;
+    }
+    
+    tp->threads = threads;
+    tp->max_queue = max_queue;
+    
+    return tp;
 }
 
 ngx_int_t
@@ -383,13 +383,13 @@ ngx_thread_pool_init_worker(ngx_thread_pool_t* tp)
     //        return NGX_ERROR;
     //    }
     //}
-	
-	ngx_ncpu = sysconf(_SC_NPROCESSORS_ONLN);
-	LOG_INFO("ncpu %d",ngx_ncpu);
-	
-	if (ngx_thread_pool_init(tp) != NGX_OK) {
-		return NGX_ERROR;
-	}
+    
+    ngx_ncpu = sysconf(_SC_NPROCESSORS_ONLN);
+    LOG_INFO("ncpu %d",ngx_ncpu);
+    
+    if (ngx_thread_pool_init(tp) != NGX_OK) {
+        return NGX_ERROR;
+    }
 
     return NGX_OK;
 }
@@ -420,6 +420,6 @@ ngx_thread_pool_exit_worker(ngx_thread_pool_t* tp)
     //for (i = 0; i < tcf->pools.nelts; i++) {
     //    ngx_thread_pool_destroy(tpp[i]);
     //}
-	
-	ngx_thread_pool_destroy(tp);
+    
+    ngx_thread_pool_destroy(tp);
 }
